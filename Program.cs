@@ -1,23 +1,25 @@
 ﻿using System;
+using System.IO;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
 namespace IISDeploy
 {
-	public class Program
-	{
-		public static void Main(string[] args)
-		{
-			var host = new WebHostBuilder()
-						.UseKestrel()
-						.UseIISIntegration()
-						.UseStartup<Startup>()
-						.Build();
+    public class Program
+    {
+        public static void Main(string[] args)
+        {
+            var host = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseIISIntegration()
+                .UseStartup<Startup>()
+                .Build();
 
-			host.Run();
-		}
-	}
+            host.Run();
+        }
+    }
 
 	public class Startup
 	{
@@ -26,7 +28,7 @@ namespace IISDeploy
 			app.Run(async (context) =>
 			{
 				await context.Response.WriteAsync(
-						"Hello World. The Time is: " +
+						"Hello Web site publish Version. The Time is: " +
 						DateTime.Now.ToString("hh:mm:ss tt"));
 			});
 		}
