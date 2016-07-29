@@ -28,7 +28,7 @@ namespace IISDeploy
 			app.Run(async (context) =>
 			{
 				await context.Response.WriteAsync(
-						"Hello Web site publish Version. The Time is: " +
+						"Hello. The Time is: " +
 						DateTime.Now.ToString("hh:mm:ss tt"));
 			});
 		}
